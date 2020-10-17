@@ -9,17 +9,59 @@
 
 
 O Proffy é uma plataforma de estudos on line
-👨‍🏫 👩‍🏫 Na página **Dar Aulas** é onde o professor(a)  cadastra seus horários, valor hora/aula e matéria que gostaria de lecionar, além do número
+👨‍🏫 👩‍🏫 Na página **Dar Aulas** é onde o professor(a) cadastra seus horários, valor hora/aula e matéria que gostaria de lecionar, além do número
 do whatsapp para contato.
 
 👩‍🎓 👨‍🎓 Na página **Estudar** o aluno(a) pode filtrar a matéria que deseja, valores que agradam e horário mais apropriado para agendar uma aula online, 
 finalizando esses quesitos ele pode entrar em contato clicando no botão que o direcionará para o número do whatsapp do professor e assim realizar o agendamento.
 
 ### Para rodar o projeto você vai precisar de:
+
+Instalar Git bash (caso esteja no Windows), linux e Mac aceitam os comandos normalmente no terminal nativo.
+
+baixe na loja oficial [Git bash](https://git-scm.com/downloads)
+
+Após instalar o git bash acesse a pasta raiz do projeto pelo terminal e instale as dependências necessárias ao projeto
 ```
-git bash (caso esteja no Windows), do contrário o seu terminal nativo aceita os comandos
-npm
-Dependencias => express, nodemon, nunjucks, sqlite-async
- 
+
+npm init -y
+
 ``` 
+
+```
+
+npm install express
+
+```
+```
+
+npm install nodemon
+
+```
+```
+
+npm install nunjucks
+
+```
+```
+
+npm install sqlite-async
+
+```
+
+Após instalar todas dependêcias inicie o server
+
+```
+
+npm start
+
+```
+
+o projeto irá rodar no endereço
+http://127.0.0.1:5555/
+
+
+#
 ![](/public/images/proffy.PNG)
+![](/public/images/proffy2.PNG)
+![](/public/images/proffy3.PNG)
