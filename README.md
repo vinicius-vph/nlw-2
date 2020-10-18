@@ -5,7 +5,7 @@
 # Proffy | Sua plataforma de estudos online
 
 
-![](/public/images/favicon.png) **O projeto foi desenvolvido na Next Level Week 2** da **Rocketseat**
+![](/public/images/favicon.png) O projeto foi desenvolvido durante a **Next Level Week 2** da **Rocketseat**
 
 
 O Proffy é uma plataforma de estudos on line
