@@ -1,9 +1,5 @@
 # NLW-2
-
-
-![](/public/images/landing.svg)
 # Proffy | Sua plataforma de estudos online
-
 
 ![](/public/images/favicon.png) O projeto foi desenvolvido durante a **Next Level Week 2** da **Rocketseat**
 
@@ -16,9 +12,12 @@ A plataforma possui duas páginas.
 do whatsapp para contato.
 
 👩‍🎓 👨‍🎓 Na página **Estudar** o aluno(a) pode filtrar a matéria que deseja, valores que agradam e horário mais apropriado para agendar uma aula online, 
-finalizando esses quesitos ele pode entrar em contato clicando no botão que o direcionará para o número do whatsapp do professor e assim realizar o agendamento.
+ao realizar esse filtro será mostrado o professor que atende à esses requisitos, aparecerá a descrição do perfil cadastrado do professor, e um botão que irá direcionar o aluno para o número do whatsapp do professor, e assim ele poderá realizar o agendamento. 
 
 
+![](/public/images/proffy.PNG)
+![](/public/images/proffy2.PNG)
+![](/public/images/proffy3.PNG)
 
 
 ### 🚀 Tecnologias
@@ -44,7 +43,7 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 ### Para rodar o projeto você vai precisar de:
 #
 
-Abra o editor    ![](/public/images/favicon.vscode2.png)     [VSCODE](https://code.visualstudio.com/download)
+Abra o editor    ![](/public/images/favicon.vscode2.png)[Visual Studio Code](https://code.visualstudio.com/download)
 
 Crie uma pasta para onde o projeto será clonado/copiado.
 
@@ -54,7 +53,7 @@ Abra o seu terminal com o comando:
 Ctrl + Shift + '
 
 ``` 
-Seu terminal deverá aparecer para você com o caminho da pasta onde você irá colocar o projeto
+Certifique-se de no seu terminal estar aparecendo o caminho correto da pasta onde você irá colocar o projeto 
 
 Agora será necessário clonar o repositório, dentro da tela do terminal digite os comandos:
 ```
@@ -66,7 +65,7 @@ Instale as dependências do projeto com o comando:
 
 ```
 
-npm init -y
+npm i
 
 ``` 
 Após instalar todas dependências inicie o server:
@@ -82,10 +81,11 @@ ou
 http://localhost:5555/
 
 #
-![](/public/images/proffy.PNG)
-![](/public/images/proffy2.PNG)
-![](/public/images/proffy3.PNG)
-
+#
+### 💡📝💭 Nesse projeto aprendi sobre a utilização da template engine Nunjucks que permite manipular o html tornando ele mais dinâmico,
+### e Promisses JavaScript que ainda estão no meu plano de estudo contínuo.
+#
+#
 
 ## 📝 Licença
 
