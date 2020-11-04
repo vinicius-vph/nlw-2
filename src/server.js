@@ -1,16 +1,16 @@
     // Servidor 
-const express = require('express') // acessando o servidor criado
-const server = express() // acessando o servidor criado já executando
+const express = require('express'); // acessando o servidor criado
+const server = express(); // acessando o servidor criado já executando
 
 const {
     pageLanding,
     pageStudy,
     pageGiveClasses,
     saveClasses
-} = require('./pages')
+} = require('./pages');
 
 // configurar nunjuncks, manipular os htmls (template engine)   
-const nunjucks = require('nunjucks')
+const nunjucks = require('nunjucks');
 nunjucks.configure('src/views', {
     express: server,
     noCache: true,

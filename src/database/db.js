@@ -1,8 +1,6 @@
-const Database = require('sqlite-async');
+const Database = require('sqlite-async')
 
 function execute(db) {
-    // criar tabelas do banco de dados
-    // cria um id para cada professor cadastrado automaticamente
     return db.exec(`
         CREATE TABLE IF NOT EXISTS proffys (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,4 +27,4 @@ function execute(db) {
     `)
 }
 
-module.exports = Database.open(__dirname + "/database.sqlite").then(execute); // abre o arquivo do banco de dados e só inicia a leitura das proximas linhas após essa tarefa
+module.exports = Database.open(__dirname + '/database.sqlite').then(execute)

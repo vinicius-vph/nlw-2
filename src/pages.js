@@ -1,27 +1,34 @@
-const Database = require('./database/db')
+const Database = require("./database/db");
 
-const { subjects, weekdays, getSubject, convertHoursToMinutes } = require('./utils/format')
+const {
+  subjects,
+  weekdays,
+  getSubject,
+  convertHoursToMinutes,
+} = require("./utils/format");
 
 function pageLanding(req, res) {
-    return res.render("index.html") // requisição e resposta da pagina inicial, ou como a pagina será apresentada 
+  return res.render("index.html"); // requisição e resposta da pagina inicial, ou como a pagina será apresentada
 }
 
 async function pageStudy(req, res) {
-    const filters = req.query // retorno quando filtra os professores, horarios e materias
+  const filters = req.query; // retorno quando filtra os professores, horarios e materias
 
-    // condicional caso os campos estiverem vazios, se estiverem preenchidos executa o bloco posterior
-    if(!filters.subject || !filters.weekday || !filters.time){
-        return res.render("study.html", { filters, subjects, weekdays }) // requisição e resposta da pagina study, retorno da requisiçao será o arquivo a ser aberto, aqui criada uma estrutura para manipular o html a cada novo professor cadastrado  
-    }
+  // condicional caso os campos estiverem vazios, se estiverem preenchidos executa o bloco posterior
+  if (!filters.subject || !filters.weekday || !filters.time) {
+    // requisição e resposta da pagina study, retorno da requisiçao será o arquivo a ser aberto,
+    // aqui criada uma estrutura para manipular o html a cada novo professor cadastrado
+    return res.render("study.html", { filters, subjects, weekdays });
+  }
 
-    //convertero horas em minutos
-    const timeToMinutes = convertHoursToMinutes(filters.time)
+  //convertero horas em minutos
+  const timeToMinutes = convertHoursToMinutes(filters.time);
 
-    //selecionando tudo de clases e proffys e juntando as tabelas
-    const query = `
+  //selecionando tudo de clases e proffys e juntando as tabelas
+  const query = `
         SELECT classes.*, proffys.*
         FROM proffys
-        JOIN classes ON (classes.proffy_id = proffy_id)
+        JOIN classes ON (classes.proffy_id = proffys.id) 
         WHERE EXISTS(
             SELECT class_schedule.*
             FROM class_schedule
@@ -31,74 +38,68 @@ async function pageStudy(req, res) {
             AND class_schedule.time_to > ${timeToMinutes}
         )
         AND classes.subject = '${filters.subject}'
-    `
+    `;
 
-    //caso haja erro na hora da consulta do banco de dados. é considerado uma boa prática
-    try {
-        const db = await Database
-        const proffys = await db.all(query)
+  //caso haja erro na hora da consulta do banco de dados. é considerado uma boa prática
+  try {
+    const db = await Database;
+    const proffys = await db.all(query);
 
+    proffys.map((proffy) => {
+      proffy.subject = getSubject(proffy.subject);
+    });
 
-        proffys.map((proffy) => {
-            proffy.subject = getSubject(proffy.subject)
-        })
-
-        return res.render('study.html', { proffys, subjects, filters, weekdays })
-        
-    } catch (error) {
-        console.log(error)
-    }
-
+    return res.render("study.html", { proffys, filters, subjects, weekdays });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // requisição e resposta da pagina give classes
 function pageGiveClasses(req, res) {
-    return res.render("give-classes.html", {subjects, weekdays}) // retorno da requisiçao será nome do diretorio + o arquivo a ser aberto
+  return res.render("give-classes.html", { subjects, weekdays }); // retorno da requisiçao será nome do diretorio + o arquivo a ser aberto
 }
-async function saveClasses(req,res){
-    const createProffy = require('./database/createProffy')
-    
-    const proffyValue = {
-        name: req.body.name,
-        avatar: req.body.avatar,
-        whatsapp: req.body.whatsapp,
-        bio: req.body.bio,
-    }
 
-    const classValue = {
-        subject: req.body.subject,
-        cost: req.body.cost,
-    }
+async function saveClasses(req, res) {
+  const createProffy = require("./database/createProffy");
 
-    const classScheduleValues = req.body.weekday.map((weekday, index) => {
+  const proffyValue = {
+    name: req.body.name,
+    avatar: req.body.avatar,
+    whatsapp: req.body.whatsapp,
+    bio: req.body.bio,
+  };
 
-        return {
-            weekday,
-            time_from: convertHoursToMinutes(req.body.time_from[index]),
-            time_to: convertHoursToMinutes(req.body.time_to[index]),
+  const classValue = {
+    subject: req.body.subject,
+    cost: req.body.cost,
+  };
 
-        }
-    })
-    try {
-        const db = await Database
-        await createProffy(db, { proffyValue, classValue, classScheduleValues })
+  const classScheduleValues = req.body.weekday.map((weekday, index) => {
+    return {
+      weekday,
+      time_from: convertHoursToMinutes(req.body.time_from[index]),
+      time_to: convertHoursToMinutes(req.body.time_to[index]),
+    };
+  });
 
-        let queryString = "?subject=" + req.body.subject
-        queryString += "&weekday=" + req.body.weekday[0] // += é a propriedade + ela mesma, ouseja ela recebe ela mesma
-        queryString += "&time=" + req.body.time_from[0]
-       
-        return res.redirect("/study" + queryString)
-    } catch (error) {
-        console.log(error)
-    }
-    
+  try {
+    const db = await Database;
+    await createProffy(db, { proffyValue, classValue, classScheduleValues });
 
-    
+    let queryString = "?subject=" + req.body.subject;
+    queryString += "&weekday=" + req.body.weekday[0]; // += é a propriedade + ela mesma, ouseja ela recebe ela mesma
+    queryString += "&time=" + req.body.time_from[0];
+
+    return res.redirect("/study" + queryString);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 module.exports = {
-    pageLanding,
-    pageStudy,
-    pageGiveClasses,
-    saveClasses
-}
+  pageLanding,
+  pageStudy,
+  pageGiveClasses,
+  saveClasses,
+};
