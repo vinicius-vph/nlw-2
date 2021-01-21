@@ -8,10 +8,10 @@ O Proffy é uma plataforma de estudos on line, que conecta professores freelance
 
 A plataforma possui duas páginas.
 
-👨‍🏫 👩‍🏫 Na página **Dar Aulas** é onde o professor(a) cadastra seus horários, valor hora/aula e matéria que gostaria de lecionar, além do número
+👨‍🏫 👩‍🏫 **Dar Aulas** Nessa página o professor(a) cadastra seus horários, valor hora/aula e matéria que gostaria de lecionar, além do número
 do whatsapp para contato.
 
-👩‍🎓 👨‍🎓 Na página **Estudar** o aluno(a) pode filtrar a matéria que deseja, valores que agradam e horário mais apropriado para agendar uma aula online, 
+👩‍🎓 👨‍🎓 **Estudar** Nessa página o aluno(a) pode filtrar a matéria que deseja, valores que agradam e horário mais apropriado para agendar uma aula online, 
 ao realizar esse filtro será mostrado o professor que atende à esses requisitos, aparecerá a descrição do perfil cadastrado do professor, e um botão que irá direcionar o aluno para o número do whatsapp do professor, e assim ele poderá realizar o agendamento. 
 
 
